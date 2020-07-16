@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+
+# Default values
+POSITIONAL=()
+# extracting cmd line arguments
+while [[ $# -gt 0 ]]
+do
+  key="$1"
+
+  case $key in
+      -d|--dockerfile)
+      DOCKERFILE="$2"
+      shift # past argument
+      shift # past value
+      ;;
+      -t|--tag)
+      TAG="$2"
+      shift # past argument
+      shift # past value
+      ;;
+      *)    # unknown option
+      POSITIONAL+=("$1") # save it in an array for later
+      shift # past argument
+      ;;
+  esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+REPO=${DOCKERFILE/.dockerfile/}
+
+docker build -f "${DOCKERFILE}" . -t globalforestwatch/"${REPO}":"$TAG"
