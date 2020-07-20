@@ -67,6 +67,9 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
         "terraform.tfplan"
       echo "Terraform apply finished."
       ;;
+    force-unlock)
+      terraform force-unlock -force "${LOCK_ID}"
+      ;;
     destroy)
       shift
       echo "Starting terraform destroy..."
