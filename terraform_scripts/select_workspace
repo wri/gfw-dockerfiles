@@ -38,7 +38,12 @@ else
   cur_branch=$(echo "${1#"$prefix"}" | tr "/" "-")
 fi
 
-if [ "$cur_branch" == "master" ] || [ "$cur_branch" == "develop" ]
+# These branche names are reserved and should always use the default workspace
+if [ "$cur_branch" == "master" ] ||
+   [ "$cur_branch" == "develop" ] ||
+   [ "$cur_branch" == "production" ] ||
+   [ "$cur_branch" == "staging" ] ||
+   [ "$cur_branch" == "dev" ]
 then
   echo "Setting workspace to 'default'"
   terraform workspace select default
@@ -46,5 +51,5 @@ else
   select_workspace "$cur_branch"
 fi
 
-
+WORKSPACE=$(terraform workspace show)
 

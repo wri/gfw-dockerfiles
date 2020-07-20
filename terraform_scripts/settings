@@ -1,0 +1,51 @@
+#!/bin/bash
+
+set -e
+
+TERRAFORM_DIR="/usr/local/src/terraform"
+pushd "${TERRAFORM_DIR}"
+
+# extracting workspace argument if exists
+POSITIONAL=()
+WORKSPACE=""
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -w|--workspace)
+    WORKSPACE="$2"
+    shift # past argument
+    shift # past value
+    ;;
+    *)    # unknown option
+    POSITIONAL+=("$1") # save it in an array for later
+    shift # past argument
+    ;;
+esac
+done
+set -- "${POSITIONAL[@]}" # restore positional parameters
+
+if [[ -n "${DEBUG}" ]]; then
+  set -x
+fi
+
+if [ -z "${ENV}" ]; then
+  ENV=dev
+fi
+
+if [ -z "${PROJECT}" ]; then
+  PROJECT=gfw
+fi
+
+
+if [ -f "/root/.aws/credentials" ]; then
+    export AWS_PROFILE=${PROJECT}-${ENV}
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_DEFAULT_REGION
+
+    echo "Using environment ${ENV} and AWS_PROFILE ${AWS_PROFILE}"
+else
+  echo "Using environment ${ENV} and AWS_ACCESS_KEY_ID"
+fi

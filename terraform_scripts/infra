@@ -9,32 +9,7 @@ Execute Terraform subcommands.
 
 set -e
 
-if [[ -n "${DEBUG}" ]]; then
-  set -x
-fi
-
-. account_settings "$@"
-
-# extracting workspace argument if exists, otherwise default to `default`
-POSITIONAL=()
-WORKSPACE="default"
-while [[ $# -gt 0 ]]
-do
-key="$1"
-
-case $key in
-    -w|--workspace)
-    WORKSPACE="$2"
-    shift # past argument
-    shift # past value
-    ;;
-    *)    # unknown option
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-esac
-done
-set -- "${POSITIONAL[@]}" # restore positional parameters
+. settings "$@"
 
 
 # Run Terraform
@@ -42,10 +17,6 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
   if [ "${1:-}" = "--help" ]; then
     usage
   else
-
-    TERRAFORM_DIR="/usr/local/src/terraform"
-    pushd "${TERRAFORM_DIR}"
-
     case "${1}" in
     fmt)
       terraform fmt -recursive .
@@ -112,6 +83,6 @@ if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
       ;;
     esac
 
-    popd
+#    popd
   fi
 fi

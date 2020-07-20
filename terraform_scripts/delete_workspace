@@ -9,17 +9,15 @@ then
   exit 1
 fi
 
-. account_settings "$@"
+. settings "$@"
 
-TERRAFORM_DIR="/usr/local/src/terraform"
-pushd "${TERRAFORM_DIR}"
+#TERRAFORM_DIR="/usr/local/src/terraform"
+#pushd "${TERRAFORM_DIR}"
 
 terraform init \
   -backend-config=vars/backend-"${ENV}".tfvars
 
-. select_workspace "$@"
-
-WORKSPACE=$(terraform workspace show)
+. select_workspace "$WORKSPACE"
 
 # We can't delete the default workspace.
 # If you want to delete all infrastructure form the default branch
@@ -32,7 +30,8 @@ fi
 
 terraform destroy \
         -var-file="vars/terraform-${ENV}.tfvars" \
-        -auto-approve
+        -auto-approve \
+        "$@"
 terraform workspace select default
 terraform workspace delete "${WORKSPACE}"
 
