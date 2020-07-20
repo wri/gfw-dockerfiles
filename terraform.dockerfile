@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:0.12.26
+FROM hashicorp/terraform:0.12.28
 
 RUN \
     apk add --no-cache \
@@ -9,7 +9,8 @@ RUN \
         docker \
         openrc \
         go \
-    && pip3 install awscli==1.18.80
+        py3-pip \
+    && pip3 install awscli==1.18.100
 
 RUN rc-update add docker boot
 RUN GO111MODULE="on" go get github.com/segmentio/terraform-docs@v0.9.1

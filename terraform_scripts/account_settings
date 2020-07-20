@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+
+
+if [ -z "${ENV}" ]; then
+  ENV=dev
+fi
+
+if [ -z "${PROJECT}" ]; then
+  PROJECT=gfw
+fi
+
+if [ -f "/root/.aws/credentials" ]; then
+    export AWS_PROFILE=${PROJECT}-${ENV}
+    unset AWS_ACCESS_KEY_ID
+    unset AWS_SECRET_ACCESS_KEY
+    unset AWS_DEFAULT_REGION
+
+    echo "Using environment ${ENV} and AWS_PROFILE ${AWS_PROFILE}"
+else
+  echo "Using environment ${ENV} and AWS_ACCESS_KEY_ID"
+fi
