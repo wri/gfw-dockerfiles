@@ -19,5 +19,5 @@ RUN rm -R /opt/src/tippecanoe-${TIPPECANOE_VERSION}
 # Install tileputty
 RUN pip install \
         tileputty~=0.2.3 \
-        awscli~=1.18.74 \
-        awscli-plugin-endpoint~=0.3
+        awscli~=1.18.117 \
+        awscli-plugin-endpoint~=0.4

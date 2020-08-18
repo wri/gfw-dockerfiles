@@ -8,8 +8,10 @@ RUN apt-get update \
 
 RUN pip install \
         csvkit~=1.0.5 \
-        awscli~=1.18.74 \
-        boto3~=1.13.24 \
-        awscli-plugin-endpoint~=0.3 \
+        awscli~=1.18.117 \
+        boto3~=1.14.40 \
+        awscli-plugin-endpoint~=0.4 \
         click~=7.1.2 \
-        psycopg2-binary~=2.8.5
+        psycopg2-binary~=2.8.5 \
+        asyncpg~=0.21.0 \
+        SQLAlchemy~=1.3.18
