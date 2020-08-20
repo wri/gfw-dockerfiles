@@ -14,4 +14,6 @@ RUN pip install \
         click~=7.1.2 \
         psycopg2-binary~=2.8.5 \
         asyncpg~=0.21.0 \
-        SQLAlchemy~=1.3.18
+        SQLAlchemy~=1.3.18 \
+        pandas~=1.1.0 \
+        shapely~=1.7.0
