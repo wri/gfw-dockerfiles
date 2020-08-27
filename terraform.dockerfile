@@ -1,4 +1,6 @@
-FROM hashicorp/terraform:0.12.28
+FROM hashicorp/terraform:0.13.1
+
+ENV TERRAFORM_DOCS_VERSION=0.10.0-rc.1
 
 RUN \
     apk add --no-cache \
@@ -8,13 +10,14 @@ RUN \
         zip \
         docker \
         openrc \
-        go \
+        curl \
         py3-pip \
-    && pip3 install awscli==1.18.100
+    && pip3 install awscli==1.18.124
 
 RUN rc-update add docker boot
-RUN GO111MODULE="on" go get github.com/segmentio/terraform-docs@v0.9.1
-ENV GOPATH=~/go
-ENV PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+RUN curl -Lo ./terraform-docs https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-$(uname | tr '[:upper:]' '[:lower:]')-amd64 \
+    && chmod +x ./terraform-docs \
+    && mv ./terraform-docs /usr/local/bin/terraform-docs
 
 COPY terraform_scripts/* /usr/local/bin/
