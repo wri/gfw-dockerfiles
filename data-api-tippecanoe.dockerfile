@@ -1,6 +1,8 @@
-FROM python:3.7-slim
+# Version 1.2.0
 
-ENV TIPPECANOE_VERSION=1.35.0
+FROM python:3.8-slim
+
+ENV TIPPECANOE_VERSION=1.36.0
 
 # Update repos and install dependencies
 RUN apt-get update \
@@ -18,6 +20,6 @@ RUN rm -R /opt/src/tippecanoe-${TIPPECANOE_VERSION}
 
 # Install tileputty
 RUN pip install \
-        tileputty~=0.2.3 \
-        awscli~=1.18.117 \
+        tileputty~=0.2.4 \
+        awscli~=1.18.132 \
         awscli-plugin-endpoint~=0.4
