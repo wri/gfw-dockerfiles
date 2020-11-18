@@ -1,4 +1,5 @@
-FROM osgeo/gdal:ubuntu-small-latest
+#1.1.0
+FROM osgeo/gdal:ubuntu-small-3.2.0
 
 RUN apt-get update -y \
     && apt-get install --no-install-recommends -y postgresql-client-12 python3-pip jq curl zip g++ libgdal-dev \
