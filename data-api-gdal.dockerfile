@@ -1,4 +1,4 @@
-#1.1.3
+#1.1.4
 FROM osgeo/gdal:ubuntu-small-3.2.0
 
 RUN apt-get update -y \
@@ -13,6 +13,6 @@ RUN pip3 install \
         rasterio~=1.1.8 \
         boto3~=1.16.19 \
         awscli-plugin-endpoint~=0.4 \
-        tileputty~=0.2.4
+        tileputty~=0.2.6
 
 RUN ln -s /usr/include /usr/include/gdal
