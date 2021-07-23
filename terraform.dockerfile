@@ -1,5 +1,5 @@
-FROM hashicorp/terraform:0.14.11
-LABEL version="v1.3.0"
+FROM hashicorp/terraform:1.0.3
+LABEL version="v1.4.0"
 
 ENV TERRAFORM_DOCS_VERSION=0.14.1
 
