@@ -8,6 +8,7 @@ pushd "${TERRAFORM_DIR}"
 # extracting workspace argument if exists
 POSITIONAL=()
 WORKSPACE=""
+FORCE=false
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -17,6 +18,10 @@ case $key in
     WORKSPACE="$2"
     shift # past argument
     shift # past value
+    ;;
+    -f|--force_name)
+    FORCE=true
+    shift # past argument
     ;;
     *)    # unknown option
     POSITIONAL+=("$1") # save it in an array for later

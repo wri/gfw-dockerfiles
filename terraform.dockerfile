@@ -1,8 +1,7 @@
-# v1.2.2
+FROM hashicorp/terraform:0.14.11
+LABEL version="v1.3.0"
 
-FROM hashicorp/terraform:0.13.3
-
-ENV TERRAFORM_DOCS_VERSION=0.10.0-rc.1
+ENV TERRAFORM_DOCS_VERSION=0.14.1
 
 RUN \
     apk add --no-cache \
@@ -14,7 +13,7 @@ RUN \
         openrc \
         curl \
         py3-pip \
-    && pip3 install awscli==1.18.140
+    && pip3 install awscli==1.20.5
 
 RUN rc-update add docker boot
 
