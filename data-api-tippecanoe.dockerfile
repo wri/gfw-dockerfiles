@@ -1,4 +1,4 @@
-# Version 1.2.1
+# Version 1.2.2
 
 FROM python:3.8-slim
 
@@ -20,6 +20,6 @@ RUN rm -R /opt/src/tippecanoe-${TIPPECANOE_VERSION}
 
 # Install python dependencies
 RUN pip install \
-        tileputty~=0.2.6 \
+        tileputty~=0.2.7 \
         awscli~=1.18.215 \
         awscli-plugin-endpoint~=0.4
