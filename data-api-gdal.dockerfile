@@ -13,6 +13,6 @@ RUN pip3 install \
         rasterio~=1.2.3 \
         boto3~=1.16.19 \
         awscli-plugin-endpoint~=0.4 \
-        tileputty~=0.2.7
+        tileputty~=0.2.8
 
 RUN ln -s /usr/include /usr/include/gdal

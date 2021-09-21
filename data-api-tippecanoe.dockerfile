@@ -20,6 +20,6 @@ RUN rm -R /opt/src/tippecanoe-${TIPPECANOE_VERSION}
 
 # Install python dependencies
 RUN pip install \
-        tileputty~=0.2.7 \
+        tileputty~=0.2.8 \
         awscli~=1.18.215 \
         awscli-plugin-endpoint~=0.4
