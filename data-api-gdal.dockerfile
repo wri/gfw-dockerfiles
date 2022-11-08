@@ -1,5 +1,6 @@
-#1.1.8
 FROM osgeo/gdal:ubuntu-small-3.5.3
+LABEL desc="Docker image with GDAL and rasterio for use with the GFW data API"
+LABEL version="v1.1.8"
 
 RUN apt-get update -y \
     && apt-get install --no-install-recommends -y postgresql-client-12 python3-pip jq curl zip g++ \
