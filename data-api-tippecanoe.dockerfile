@@ -1,6 +1,6 @@
-# Version 1.2.2
-
-FROM python:3.8-slim
+FROM python:3.10-slim
+LABEL desc="Docker image with Tippecanoe for use with the GFW data API"
+LABEL version="v1.2.3"
 
 ENV TIPPECANOE_VERSION=1.36.0
 
@@ -20,6 +20,6 @@ RUN rm -R /opt/src/tippecanoe-${TIPPECANOE_VERSION}
 
 # Install python dependencies
 RUN pip install \
-        tileputty~=0.2.8 \
-        awscli~=1.18.215 \
-        awscli-plugin-endpoint~=0.4
+        awscli~=1.27.9 \
+        awscli-plugin-endpoint~=0.4 \
+        tileputty~=0.2.10
