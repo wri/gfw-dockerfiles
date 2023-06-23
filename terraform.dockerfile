@@ -1,7 +1,5 @@
-FROM hashicorp/terraform:1.0.3
-LABEL version="v1.4.0"
-
-ENV TERRAFORM_DOCS_VERSION=0.14.1
+FROM hashicorp/terraform:1.0.11
+LABEL version="v1.4.2"
 
 RUN \
     apk add --no-cache \
@@ -13,12 +11,8 @@ RUN \
         openrc \
         curl \
         py3-pip \
-    && pip3 install awscli==1.20.5
+    && pip3 install awscli==1.27.153
 
 RUN rc-update add docker boot
-
-RUN curl -Lo ./terraform-docs https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-$(uname | tr '[:upper:]' '[:lower:]')-amd64 \
-    && chmod +x ./terraform-docs \
-    && mv ./terraform-docs /usr/local/bin/terraform-docs
 
 COPY terraform_scripts/* /usr/local/bin/
