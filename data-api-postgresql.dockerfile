@@ -1,6 +1,6 @@
 FROM python:3.10-slim
 LABEL desc="Docker image with PostgreSQL client for use with the GFW data API"
-LABEL version="v1.0.3"
+LABEL version="v1.0.4"
 
 # Update repos and install dependencies
 RUN apt-get update \
@@ -14,7 +14,7 @@ RUN pip install \
         awscli-plugin-endpoint~=0.4 \
         boto3~=1.26.9 \
         click~=8.1.3 \
-        csvkit~=1.0.7 \
+        csvkit~=1.0.5 \
         pandas~=1.5.1 \
         psycopg2-binary~=2.9.5 \
         shapely~=1.8.5 \
