@@ -18,7 +18,7 @@ RUN python -m venv ${VENV_DIR} --system-site-packages \
         awscli~=1.33.13 \
         awscli-plugin-endpoint~=0.4 \
         boto3~=1.34.128 \
-        csvkit~=1.0.5 \
+        csvkit~=2.0.0 \
         earthengine-api~=0.1.408 \
         fiona~=1.9.6 \
         rasterio~=1.3.10 \
