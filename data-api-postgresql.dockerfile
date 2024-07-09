@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 LABEL desc="Docker image with PostgreSQL client for use with the GFW data API"
-LABEL version="v1.1.0"
+LABEL version="v1.1.1"
 
 ENV VENV_DIR="/.venv"
 
@@ -16,14 +16,15 @@ RUN python -m venv ${VENV_DIR} \
     && . ${VENV_DIR}/bin/activate \
     && python -m ensurepip --upgrade \
     && python -m pip install \
+        agate~=1.11.0 \
         asyncpg~=0.29.0 \
         awscli~=1.33.13 \
         awscli-plugin-endpoint~=0.4 \
         boto3~=1.34.128 \
         click~=8.1.7 \
-        csvkit~=1.0.5 \
+        csvkit~=2.0.0 \
         numpy~=1.26.4 \
-        "pandas<2.2" \
+        pandas~=2.1.4 \
         psycopg2~=2.9.9 \
         setuptools~=70.1 \
         shapely~=2.0.4 \
