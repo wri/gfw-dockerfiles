@@ -1,6 +1,6 @@
 FROM ghcr.io/osgeo/gdal:ubuntu-full-3.8.5
 LABEL desc="Docker image with GDAL and rasterio for use with the GFW data API"
-LABEL version="v1.2.0"
+LABEL version="v1.2.1"
 
 ENV VENV_DIR="/.venv"
 
