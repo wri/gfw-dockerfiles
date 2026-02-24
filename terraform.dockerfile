@@ -1,24 +1,32 @@
-FROM hashicorp/terraform:1.0.3
-LABEL version="v1.4.0"
+FROM ubuntu:noble
 
-ENV TERRAFORM_DOCS_VERSION=0.14.1
+ENV TERRAFORM_VERSION="0.13.3"
+ENV PYTHONUNBUFFERED=1
 
-RUN \
-    apk add --no-cache \
-        bash \
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends --no-install-suggests  \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        docker.io \
+        git \
+        gnupg \
+        lsb-release \
         make \
         python3 \
-        zip \
-        docker \
-        openrc \
-        curl \
-        py3-pip \
-    && pip3 install awscli==1.20.5
+        python-is-python3 \
+        unzip && \
+    curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor > /usr/share/keyrings/hashicorp-archive-keyring.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" > /etc/apt/sources.list.d/hashicorp.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends --no-install-suggests terraform=${TERRAFORM_VERSION} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists && \
+    rm -rf /var/cache/apt
 
-RUN rc-update add docker boot
-
-RUN curl -Lo ./terraform-docs https://github.com/terraform-docs/terraform-docs/releases/download/v${TERRAFORM_DOCS_VERSION}/terraform-docs-v${TERRAFORM_DOCS_VERSION}-$(uname | tr '[:upper:]' '[:lower:]')-amd64 \
-    && chmod +x ./terraform-docs \
-    && mv ./terraform-docs /usr/local/bin/terraform-docs
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    rm -rf awscliv2.zip
 
 COPY terraform_scripts/* /usr/local/bin/
